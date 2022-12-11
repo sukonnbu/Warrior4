@@ -1,14 +1,17 @@
 import pygame
 from variables import *
 
+
 class Button():
-    def __init__(self):
+    def __init__(self, screen):
         self.image = ""
         self.image_on = ""
         self.image_off = ""
         self.rect = ""
-    
-    def init_button(self, on_dir:str, off_dir:str, pos: tuple):
+
+        self.screen = screen
+
+    def init_button(self, on_dir: str, off_dir: str, pos: tuple):
         self.image_on = pygame.image.load(on_dir)
         self.image_on = pygame.transform.scale(self.image_on, (200, 70))
         self.image_off = pygame.image.load(off_dir)
@@ -19,13 +22,11 @@ class Button():
 
         self.rect.center = pos
 
-
-    def update(self, mouse_on = False):
+    def update(self, mouse_on=False):
         if mouse_on:
             self.image = self.image_on
         else:
             self.image = self.image_off
-    
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
-    
+
+    def draw(self):
+        self.screen.blit(self.image, self.rect)
